@@ -1,4 +1,10 @@
 {
-  "name": "QuizApp",
-  "displayName": "QuizApp"
+  "expo": {
+    "name": "QuizApp",
+    "slug": "quizapp",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "platforms": ["ios", "android"],
+    "sdkVersion": "55.0.0"
+  }
 }
