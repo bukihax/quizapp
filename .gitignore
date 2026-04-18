@@ -1,3 +1,6 @@
+# Prevent React Native CLI leftover from overriding Expo entry point
+App.tsx
+
 # OSX
 #
 .DS_Store
