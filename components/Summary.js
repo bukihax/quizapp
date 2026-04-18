@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { Button } from '@rneui/themed';
 
 function isCorrect(question, userAnswer) {
   if (question.type === 'multiple-answer') {
@@ -12,7 +13,7 @@ function isCorrect(question, userAnswer) {
   return userAnswer === question.correct;
 }
 
-export default function Summary({ route }) {
+export default function Summary({ route, navigation }) {
   const { data, userAnswers } = route.params;
 
   let totalScore = 0;
@@ -26,6 +27,13 @@ export default function Summary({ route }) {
       <Text testID="total" style={styles.score}>
         Score: {totalScore} / {data.length}
       </Text>
+
+      <Button
+        title="Retake Quiz"
+        onPress={() => navigation.reset({ index: 0, routes: [{ name: 'Question', params: { data, index: 0, userAnswers: [] } }] })}
+        buttonStyle={styles.resetButton}
+        containerStyle={styles.resetButtonContainer}
+      />
 
       {data.map((question, qi) => {
         const userAnswer = userAnswers[qi];
@@ -138,5 +146,13 @@ const styles = StyleSheet.create({
   wrongChoice: {
     textDecorationLine: 'line-through',
     color: '#c62828',
+  },
+  resetButton: {
+    backgroundColor: '#4a90d9',
+    borderRadius: 8,
+    paddingVertical: 12,
+  },
+  resetButtonContainer: {
+    marginBottom: 24,
   },
 });
